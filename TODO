@@ -1,0 +1,2 @@
+TODO: 
+Erreur de parsing lors de l'ajout : ex ajouter chambre :   System.out.println("Cette chambre est déjà dans la liste (id: " + c.getID() + ")");

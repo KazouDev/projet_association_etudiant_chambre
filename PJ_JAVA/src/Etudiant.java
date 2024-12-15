@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Etudiant extends Personne {
     private long ine;
     private int promo;

@@ -1,4 +1,4 @@
-public class Chambre {
+public class Chambre implements Comparable<Chambre> {
     private String id;
     private String name;
     private String residence_name;
@@ -17,6 +17,10 @@ public class Chambre {
         this.code_city = code_city;
         this.notes = notes;
         this.latest_renovation = latest_renovation;
+    }
+
+    public String getID(){
+        return this.id;
     }
 
     public int getMoyenne(){
@@ -48,6 +52,15 @@ public class Chambre {
     }
 
     public String toString(){
-        return "[" + this.id + "] Chambre (" + this.name + ") dans la résidence " + this.residence_name + " noté : " + this.getMoyenne();
+        return "[" + this.id + "] Chambre (" + this.name + ") dans la résidence " + this.residence_name + " noté : " + this.getMoyenne() + " à l'adresse " + this.adress;
+    }
+
+    @Override
+    public int compareTo(Chambre o) {
+        int note_comp = Integer.compare(o.getMoyenne(), this.getMoyenne());
+        if (note_comp == 0){
+            return -Integer.compare(this.latest_renovation, o.latest_renovation);
+        }
+        return note_comp;
     }
 }

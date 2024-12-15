@@ -68,13 +68,14 @@ public class ReadCSVChambre {
             try(BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String line;
                 reader.readLine(); // Dropping first line (CSV header)
+
                 while((line = reader.readLine()) != null) { // reader.readLine() -> to get the line and 
                     chambres.add(new ReadCSVChambre(line.split(";")).toChambre()); // spliting here but it was a choice
                 }
                 return chambres;
             } catch (IOException e) {
-                System.err.println(e);
-                System.err.println("An issue occured... (returned empty array)");
+                System.out.println(e);
+                System.out.println("An issue occured... (returned empty array)");
             }
             return chambres;
     }

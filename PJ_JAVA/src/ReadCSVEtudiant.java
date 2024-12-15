@@ -72,7 +72,7 @@ public class ReadCSVEtudiant {
         return p;
     }
 
-        public static List<Personne> generateEtudiants(String path){
+        public static ArrayList<Personne> generateEtudiants(String path){
         File csvFile = new File(path); // to read the CSV file
         ArrayList<Personne> candidats = new ArrayList<>();
             try(BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
