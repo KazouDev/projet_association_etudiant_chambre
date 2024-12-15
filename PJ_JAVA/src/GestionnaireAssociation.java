@@ -34,7 +34,7 @@ public class GestionnaireAssociation {
   
 
   public void afficher(){
-      System.out.println("Contenu de la HashMap :");
+      System.out.println("Contenu de la TreeMap :");
       System.out.println("------------------------");
       this.association.forEach((key, value) -> System.out.println("Clé : " + key + " | Valeur : " + value));
       System.out.println("------------------------");
