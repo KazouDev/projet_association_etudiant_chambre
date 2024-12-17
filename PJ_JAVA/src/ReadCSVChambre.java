@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ReadCSVChambre {
@@ -72,6 +73,7 @@ public class ReadCSVChambre {
                 while((line = reader.readLine()) != null) { // reader.readLine() -> to get the line and 
                     chambres.add(new ReadCSVChambre(line.split(";")).toChambre()); // spliting here but it was a choice
                 }
+                Collections.sort(chambres);
                 return chambres;
             } catch (IOException e) {
                 System.out.println(e);

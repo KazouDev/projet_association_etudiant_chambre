@@ -19,7 +19,11 @@ public class GestionnaireAssociation {
     this.chambres = chambres;
   }
 
-  public void attacherChambres(){
+  public boolean estAssocie(){
+    return !this.association.isEmpty();
+  }
+
+  public int[] attacherChambres(){
     this.candidats.stream()
     .limit(chambres_disponibles.size())
     .forEach(e -> {
@@ -28,8 +32,8 @@ public class GestionnaireAssociation {
     });
     int etudiant_non_attribue = Integer.max(0, this.candidats.size() - (this.chambres.size() - this.chambres_disponibles.size()));
     int chambre_non_attribue = this.chambres_disponibles.size();
-    System.out.println("Candidat(s) sans chambre : " + etudiant_non_attribue);
-    System.out.println("Chambre(s) disponible : " + chambre_non_attribue);
+    
+    return new int[]{etudiant_non_attribue, chambre_non_attribue};
   }
   
 

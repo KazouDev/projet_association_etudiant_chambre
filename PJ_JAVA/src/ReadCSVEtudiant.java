@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ReadCSVEtudiant {
@@ -72,7 +73,7 @@ public class ReadCSVEtudiant {
         return p;
     }
 
-        public static ArrayList<Personne> generateEtudiants(String path){
+    public static ArrayList<Personne> generateEtudiants(String path){
         File csvFile = new File(path); // to read the CSV file
         ArrayList<Personne> candidats = new ArrayList<>();
             try(BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
@@ -81,11 +82,13 @@ public class ReadCSVEtudiant {
                 while((line = reader.readLine()) != null) { // reader.readLine() -> to get the line and 
                     candidats.add(new ReadCSVEtudiant(line.split(";")).toPersonne()); // spliting here but it was a choice
                 }
+                Collections.sort(candidats);
                 return candidats;
             } catch (IOException e) {
                 System.err.println(e);
                 System.err.println("An issue occured... (returned empty array)");
             }
+
             return candidats;
     }
 

@@ -50,30 +50,30 @@ public class Personne implements Comparable<Personne> {
         if (this instanceof WorkingEtudiant) {
             if (o instanceof WorkingEtudiant) {
                 // Deux WorkingEtudiants : comparer les moyennes
-                return Integer.compare(((Etudiant) this).getMoyenne(), ((Etudiant) o).getMoyenne());
+                return Integer.compare(((Etudiant) o).getMoyenne(), ((Etudiant) this).getMoyenne());
             }
             // WorkingEtudiant prioritaire sur Etudiant, moins prioritaire que Personne
-            return (o instanceof Etudiant) ? 1 : -1;
+            return (o instanceof Etudiant) ? -1 : 1;
         }
     
         // Cas 2 : Comparer Etudiant
         if (this instanceof Etudiant) {
             if (o.getClass() == Etudiant.class) {
                 // Deux Étudiants : comparer les moyennes
-                 return Integer.compare(((Etudiant) this).getMoyenne(), ((Etudiant) o).getMoyenne());
+                 return Integer.compare(((Etudiant) o).getMoyenne(), ((Etudiant) this).getMoyenne());
             }
             // Étudiant moins prioritaire que tout autre type
-            return -1;
+            return 1;
         }
     
         // Cas 3 : Comparer Personne
         if (o instanceof Etudiant || o instanceof WorkingEtudiant) {
             // Personne est prioritaire sur Étudiant et WorkingEtudiant
-            return 1;
+            return -1;
         }
     
         // Deux Personnes : comparer les âges
-        return Integer.compare(this.getAge(), o.getAge());
+        return Integer.compare(o.getAge(), this.getAge());
     }
     
     
