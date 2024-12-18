@@ -1,2 +1,16 @@
 TODO: 
-Erreur de parsing lors de l'ajout : ex ajouter chambre :   System.out.println("Cette chambre est déjà dans la liste (id: " + c.getID() + ")");
+Les modalités précises de la politique d’allocation aux étudiants sont laissées à votre discrétion. 
+Cependant, il est au minimum nécessaire de se baser sur les informations suivantes :
+ — L’année de promotion (pour détecter les nouveaux étudiants)
+ — Les notes de l’étudiant(e) si ces derniers ne sont pas nouveaux
+ — Lefait que l’étudiant(e) travaille ou non et ses plages horaires/son temps de travail
+ — Lescore de chaque chambre
+
+ AJOUT MainTest
+
+ AJOUTER DIAGRAMME / LE FINIR
+
+ FAIRE DOC
+
+ AJOUT CLASSE ADRESSE
+

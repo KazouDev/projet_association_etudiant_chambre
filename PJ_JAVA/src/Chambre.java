@@ -1,10 +1,8 @@
 public class Chambre implements Comparable<Chambre> {
     private String id;
     private String name;
+    private Adresse adresse;
     private String residence_name;
-    private String adress;
-    private String city;
-    private int code_city;
     private int[] notes;
     private int latest_renovation;
 
@@ -12,9 +10,7 @@ public class Chambre implements Comparable<Chambre> {
         this.id = id;
         this.name = name;
         this.residence_name = residence_name;
-        this.adress = adress;
-        this.city = city;
-        this.code_city = code_city;
+        this.adresse = new Adresse(city, code_city, adress);
         this.notes = notes;
         this.latest_renovation = latest_renovation;
     }
@@ -52,7 +48,7 @@ public class Chambre implements Comparable<Chambre> {
     }
 
     public String toString(){
-        return "[" + this.id + "] Chambre (" + this.name + ") dans la résidence " + this.residence_name + " noté : " + this.getMoyenne() + " à l'adresse " + this.adress;
+        return "[" + this.id + "] Chambre (" + this.name + ") dans la résidence " + this.residence_name + " noté : " + this.getMoyenne() + " à l'adresse " + this.adresse;
     }
 
     @Override

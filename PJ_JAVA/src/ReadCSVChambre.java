@@ -24,43 +24,18 @@ public class ReadCSVChambre {
         this.id = line_splited[0];
         this.name = line_splited[1];
         this.residence = line_splited[2];
-        this.address = line_splited[3]; // had to convert to int
+        this.address = line_splited[3];
         this.city = line_splited[4];
-        this.city_code = Integer.parseInt(line_splited[5]);
-        this.surface = Float.parseFloat(line_splited[6]);
-        this.creation_date = Integer.parseInt(line_splited[7]);
-        this.latest_renovation_date = Integer.parseInt(line_splited[8]);
-        this.nb_locations = Integer.parseInt(line_splited[9]);
-        this.scores = ReadCSVChambre.parse_list_int(line_splited[10]);
-    }
-
-    private static int[] parse_list_int(String notes) {
-        // function to convert the string of notes to a list of int
-        String[] n = notes.replace("[", "").replace("]", "").split(",");
-        int[] res = new int[n.length];
-        for (int i = 0; i<n.length; i++){
-            // System.out.println(n[i]);
-            res[i] = Integer.parseInt(n[i]);
-        }
-        return res;
+        this.city_code = Parser.safeParseInt(line_splited[5], 0);
+        this.surface = Parser.safeParseFloat(line_splited[6], 0.0f);
+        this.creation_date = Parser.safeParseInt(line_splited[7], 0);
+        this.latest_renovation_date = Parser.safeParseInt(line_splited[8], 0);
+        this.nb_locations = Parser.safeParseInt(line_splited[9], 0);
+        this.scores = Parser.parseListInt(line_splited[10]);
     }
 
     public Chambre toChambre(){
         return new Chambre(this.id, this.name, this.residence, this.address, this.city, this.city_code, this.scores, this.latest_renovation_date);
-    }
-
-    public void affiche() {
-        System.out.println(this.id);
-        System.out.println(this.name);
-        System.out.println(this.residence);
-        System.out.println(this.address);
-        System.out.println(this.city);
-        System.out.println(this.city_code);
-        System.out.println(this.surface);
-        System.out.println(this.creation_date);
-        System.out.println(this.latest_renovation_date);
-        System.out.println(this.nb_locations);
-        System.out.println(this.scores);
     }
 
     public static List<Chambre> generateChambres(String path){

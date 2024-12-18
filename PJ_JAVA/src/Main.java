@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -17,19 +16,21 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        GestionnaireAssociation asso = new GestionnaireAssociation("Association", liste_personnes, liste_chambres);
+        GestionnaireAssociation asso = new GestionnaireAssociation(liste_personnes, liste_chambres);
 
         boolean end = false;
 
+        // Boucle du programme permettant l'affichage des différentes options ainsi que leur utilisation.
         while (!end){
-            System.out.println("\n--- Menu ---");
+            System.out.println("--- Menu ---");
             System.out.println("1. Ajouter un candidat");
             System.out.println("2. Afficher les candidats");
             System.out.println("3. Ajouter une chambre");
             System.out.println("4. Afficher les chambres");
             System.out.println("5. Attribuer chambres");
             System.out.println("6. Afficher chambres attribué");
-            System.out.println("7. Quitter");
+            System.out.println("7. Libérer chambres attribué");
+            System.out.println("8. Quitter");
             System.out.print("Choisissez une option : ");
 
             try {
@@ -38,6 +39,7 @@ public class Main {
                 String[] splitted_line;
                 switch (action) {
                     case 1:    
+                        // Ajout d'un candidat
                         scanner.nextLine();
                         System.out.println("Saisir une ligne de CSV Etudiant à ajouter");
                         line = scanner.nextLine();
@@ -57,10 +59,12 @@ public class Main {
                         
                         break;
                     case 2: 
+                        // Liste des personnes
                         System.out.println("Liste des personnes : ");
                         liste_personnes.stream().forEach(e -> System.out.println(e));
                         break;
                     case 3:    
+                        // Ajout d'une chambre
                         scanner.nextLine();
                         System.out.println("Saisir une ligne de CSV Chambre à ajouter");
                         line = scanner.nextLine();
@@ -79,24 +83,35 @@ public class Main {
                         }
                         break;
                     case 4:
+                        // Liste des chambres
                         System.out.println("Liste des chambres : ");
                         liste_chambres.stream().forEach(e -> System.out.println(e));
                         break;
                     case 5:
+                        // Association chambres - candidats
                         int[] result = asso.attacherChambres();
                         System.out.println("Association des chambres avec succès : ");
                         System.out.println("Candidat(s) sans chambre : " + result[0]);
                         System.out.println("Chambre(s) disponible : " + result[1]);
                         break;
                     case 6:
+                        // Affichage de l'association
                         if (!asso.estAssocie()){
                             System.out.println("Vous devez d'abord associé les chambres avec les candidats (option 5).");
                             continue;
                         }
                         asso.afficher();
-                        break;    
+                        break;
                     case 7:
+                        // Suppression d'une association chambre - candidat
+                        scanner.nextLine();
+                        System.out.println("Saisir l'identifiant de la chambre à libérer :");
+                        line = scanner.nextLine();
+                        asso.libererChambre(line);
+                        break;
+                    case 8:
                         end = true;
+                        scanner.close();
                         break;
                 }
             } catch(InputMismatchException e){
