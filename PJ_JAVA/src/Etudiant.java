@@ -1,10 +1,11 @@
+
 public class Etudiant extends Personne {
     private long ine;
     private int promo;
     private int[] notes;
 
-    public Etudiant(String id, String name, String surname, int age, long ine, int promo, int[] notes){
-        super(id, name, surname, age);
+    public Etudiant(String id, String name, String surname, Genre genre, int age, long ine, int promo, int[] notes){
+        super(id, name, surname, genre, age);
         this.ine = ine;
         this.promo = promo;
         this.notes = notes;
@@ -14,16 +15,8 @@ public class Etudiant extends Personne {
         return ine;
     }
 
-    public void setIne(long ine) {
-        this.ine = ine;
-    }
-
     public int getPromo() {
         return promo;
-    }
-
-    public void setPromo(int promo) {
-        this.promo = promo;
     }
 
     public int[] getNotes() {
@@ -48,6 +41,11 @@ public class Etudiant extends Personne {
 
     public String toString(){
         return super.toString() + " - Etudiant : " + this.ine + " (" + this.promo + "), moyenne : " + this.getMoyenne();
+    }
+
+    @Override
+    public float getScore(){
+        return super.getScore() + 50 + this.getMoyenne() + (this.promo / 1000);
     }
 
 }

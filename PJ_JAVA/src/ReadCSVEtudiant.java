@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,7 +11,7 @@ public class ReadCSVEtudiant {
     private String name;
     private String surname;
     private int age;
-    private String gender;
+    private Genre gender;
     private long INE;
     private int promo;
     private int[] notes;
@@ -22,7 +23,7 @@ public class ReadCSVEtudiant {
         this.name = line_splited[1];
         this.surname = line_splited[2];
         this.age = Parser.safeParseInt(line_splited[3], 0); // valeur par défaut 0
-        this.gender = line_splited[4];
+        this.gender = Genre.parseGenre(line_splited[4]);
         this.INE = Parser.safeParseLong(line_splited[5], 0L); // valeur par défaut 0
         this.promo = Parser.safeParseInt(line_splited[6], 0);
         this.notes = line_splited[7].equals("null") ? new int[0] : Parser.parseListInt(line_splited[7]);
@@ -34,13 +35,17 @@ public class ReadCSVEtudiant {
         Personne p;
         if (this.INE == 0){
             // Pas un étudiant
-            p = new Personne(this.id, this.name, this.surname, this.age);
+            if (this.contrat == "null"){
+                p = new Personne(this.id, this.name, this.surname, this.gender, this.age);
+            } else {
+                p = new Travailleur(this.id, this.name, this.surname, this.gender, this.age, this.contrat, this.working_hours);
+            }
         } else if (this.contrat == "null"){
             // Etudiant qui ne travaille pas
-            p = new Etudiant(this.id, this.name, this.surname, this.age, this.INE, this.promo, this.notes);
+            p = new Etudiant(this.id, this.name, this.surname, this.gender, this.age, this.INE, this.promo, this.notes);
         } else {
             // Etudiant qui travaille
-            p = new WorkingEtudiant(this.id, this.name, this.surname, this.age, this.INE, this.promo, this.notes, this.contrat, this.working_hours);
+            p = new EtudiantTravailleur(this.id, this.name, this.surname, this.gender, this.age, this.INE, this.promo, this.notes, this.contrat, this.working_hours);
         }
 
         return p;
@@ -63,16 +68,5 @@ public class ReadCSVEtudiant {
             }
 
             return candidats;
-    }
-
-    public static void main(String[] args) {
-        String path;
-        if (args.length == 0){ 
-            System.out.println("This main needs a path!");
-        }
-        else {
-            path = args[0]; // getting the argument
-            generateEtudiants(path).stream().forEach(e -> System.out.println(e));
-        }
     }
 }

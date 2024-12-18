@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,9 +15,7 @@ public class ReadCSVChambre {
     private String city;
     private int city_code;
     private float surface;
-    private int creation_date;
     private int latest_renovation_date;
-    private int nb_locations;
     private int[] scores;
 
     public ReadCSVChambre(String[] line_splited) {
@@ -28,14 +27,12 @@ public class ReadCSVChambre {
         this.city = line_splited[4];
         this.city_code = Parser.safeParseInt(line_splited[5], 0);
         this.surface = Parser.safeParseFloat(line_splited[6], 0.0f);
-        this.creation_date = Parser.safeParseInt(line_splited[7], 0);
         this.latest_renovation_date = Parser.safeParseInt(line_splited[8], 0);
-        this.nb_locations = Parser.safeParseInt(line_splited[9], 0);
         this.scores = Parser.parseListInt(line_splited[10]);
     }
 
     public Chambre toChambre(){
-        return new Chambre(this.id, this.name, this.residence, this.address, this.city, this.city_code, this.scores, this.latest_renovation_date);
+        return new Chambre(this.id, this.name, this.residence, this.address, this.surface, this.city, this.city_code, this.scores, this.latest_renovation_date);
     }
 
     public static List<Chambre> generateChambres(String path){

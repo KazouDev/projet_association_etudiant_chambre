@@ -1,3 +1,4 @@
+
 public class Parser {
   // Méthode sécurisée pour parser un int
   public static int safeParseInt(String value, int defaultValue) {

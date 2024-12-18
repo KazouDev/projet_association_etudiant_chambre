@@ -2,15 +2,17 @@ public class Chambre implements Comparable<Chambre> {
     private String id;
     private String name;
     private Adresse adresse;
+    private float surface;
     private String residence_name;
     private int[] notes;
     private int latest_renovation;
 
-    public Chambre(String id, String name, String residence_name, String adress, String city, int code_city, int[] notes, int latest_renovation){
+    public Chambre(String id, String name, String residence_name, String adress, float surface, String city, int code_city, int[] notes, int latest_renovation){
         this.id = id;
         this.name = name;
         this.residence_name = residence_name;
         this.adresse = new Adresse(city, code_city, adress);
+        this.surface = surface;
         this.notes = notes;
         this.latest_renovation = latest_renovation;
     }
@@ -43,10 +45,6 @@ public class Chambre implements Comparable<Chambre> {
         return latest_renovation;
     }
 
-    public void setLatest_renovation(int latest_renovation) {
-        this.latest_renovation = latest_renovation;
-    }
-
     public String toString(){
         return "[" + this.id + "] Chambre (" + this.name + ") dans la résidence " + this.residence_name + " noté : " + this.getMoyenne() + " à l'adresse " + this.adresse;
     }
@@ -55,7 +53,7 @@ public class Chambre implements Comparable<Chambre> {
     public int compareTo(Chambre o) {
         int note_comp = Integer.compare(o.getMoyenne(), this.getMoyenne());
         if (note_comp == 0){
-            return -Integer.compare(this.latest_renovation, o.latest_renovation);
+            return -Float.compare(this.surface, o.surface);
         }
         return note_comp;
     }
