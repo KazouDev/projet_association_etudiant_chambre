@@ -3,6 +3,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import personne.Personne;
+
 public class Main {
 
     // Arguments : <csv etudiants> <csv chambres> 

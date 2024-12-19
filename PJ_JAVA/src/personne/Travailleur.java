@@ -1,3 +1,4 @@
+package personne;
 public class Travailleur extends Personne {
     private String contrat;
     private String[] working_hours;

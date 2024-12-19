@@ -3,6 +3,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import personne.Personne;
+
 public class GestionnaireAssociation {
   private Map<Personne, Chambre> association;
   private List<Personne> candidats;

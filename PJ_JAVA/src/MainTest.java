@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.function.Supplier;
 
+import personne.Personne;
+
 public class MainTest {
 
     public static <T> void assertTest(String name, Supplier<T> condition, T expected) {

@@ -1,3 +1,4 @@
+package personne;
 public class Personne implements Comparable<Personne> {
     private String id;
     private String name;

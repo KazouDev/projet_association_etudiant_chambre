@@ -1,3 +1,4 @@
+package personne;
 
 public class Etudiant extends Personne {
     private long ine;

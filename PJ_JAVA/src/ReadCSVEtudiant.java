@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import personne.Etudiant;
+import personne.EtudiantTravailleur;
+import personne.Genre;
+import personne.Personne;
+import personne.Travailleur;
+
 public class ReadCSVEtudiant {
     private String id;
     private String name;

@@ -1,3 +1,4 @@
+package personne;
 
 public class EtudiantTravailleur extends Etudiant {
     private String contrat;
